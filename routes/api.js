@@ -29,7 +29,7 @@ router.get('/tiktok', async (req, res, next) => {
         creator: `Davitt`,
         message: "masukan parameter url"
     })
-    let ttlu = await dylux.tiktokdl(url).catch(async _ => await bochil.tiktokdlv2(url))
+    let ttlu = await dylux.tiktok(url).catch(async _ => await bochil.tiktokdlv2(url))
     var result = ttlu;
     res.json({
             result
