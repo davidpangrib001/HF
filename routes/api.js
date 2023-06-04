@@ -1,4 +1,5 @@
 const express = require('express');
+const dylux = require ('api-dylux');
 const bochil = require('@bochilteam/scraper');
 const router = express.Router();
 const { cekKey } = require('../database/db'); 
@@ -28,7 +29,7 @@ router.get('/tiktok', async (req, res, next) => {
         creator: `Davitt`,
         message: "masukan parameter url"
     })
-    let ttlu = await bochil.tiktokdl(url).catch(async _ => await bochil.tiktokdlv2(url))
+    let ttlu = await dylux.tiktokdl(url).catch(async _ => await bochil.tiktokdlv2(url))
     var result = ttlu;
     res.json({
             result
