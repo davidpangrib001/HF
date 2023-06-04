@@ -8,6 +8,7 @@ RUN curl -fsSL http://deb.nodesource.com/setup_lts.x | bash - &&\
 apt-get install -y nodejs
 RUN npm i yarn -g
 RUN yarn add @bochilteam/scraper
+RUN yarn add api-dylux
 
 RUN mkdir bookworm
 WORKDIR /bookworm
