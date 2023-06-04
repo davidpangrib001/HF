@@ -23,6 +23,7 @@
   "homepage": "https://github.com/fawwaz37/nodejs-restapi",
   "license": "ISC",
   "dependencies": {
+    "@bochilteam/scraper": "latest",
     "axios": "^0.21.1",
     "cfonts": "^2.9.3",
     "chalk": "^4.1.2",
