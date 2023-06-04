@@ -29,19 +29,12 @@ router.get('/tiktok', async (req, res, next) => {
         creator: `Davitt`,
         message: "masukan parameter url"
     })
-    let ttlu = await dylux.tiktok(url).catch(async _ => await bochil.tiktokdlv2(url))
+    let ttlu = await dylux.tiktok(url).catch(async _ => await bochil.tiktokdl(url))
     var result = ttlu;
     res.json({
             result
         })
-        .catch(e => {
-            console.log(e);
-        res.json(loghandler.error)
-        res.status(500).send({
-            status: 500,
-            message: 'Internal Server Error'
-        })
-        })
+
 });
 
 router.get('/ytmp4', youtubeMp4);
