@@ -1,6 +1,7 @@
 const express = require('express');
 const dylux = require ('api-dylux');
 const bochil = require('@bochilteam/scraper');
+const fetch = require('node-fetch');
 const router = express.Router();
 const { cekKey } = require('../database/db'); 
 const { youtubePlay, youtubeMp4, youtubeMp3 } = require('../controllers/yt');
@@ -19,6 +20,22 @@ router.get('/checkkey', async (req, res) => {
     });
     res.send({status: 200, apikey: apikey, response: 'Aktif :)'});
 });
+
+router.get('/ssweb', async (req, res, next) => {
+    let url = req.query.url
+    if (!url) return res.json({
+        status: false,
+        creator: 'Davitt',
+        message: "masukan parameter url"
+    })
+    let anjass = await fetch(`https://ssweb.lonte.eu.org/api/webscreen?url=${url}&mediatype=desktop&responsetype=image`)
+    .then((data) => {
+            res.set({
+                'Content-Type': 'image/png'
+            })
+            res.send(data)
+        })
+        }
 
 router.get('/ytplay', youtubePlay);
 
