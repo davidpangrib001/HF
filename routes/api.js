@@ -23,7 +23,6 @@ router.get('/checkkey', async (req, res) => {
 });
 
 router.get('/ssweb', async (url, device = 'desktop') => {
-    let url = req.query.url
     if (!url) return res.json({
         status: false,
         creator: 'Davitt',
