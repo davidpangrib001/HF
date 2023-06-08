@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const dylux = require ('api-dylux');
 const bochil = require('@bochilteam/scraper');
 const fetch = require('node-fetch');
@@ -21,21 +22,43 @@ router.get('/checkkey', async (req, res) => {
     res.send({status: 200, apikey: apikey, response: 'Aktif :)'});
 });
 
-router.get('/ssweb', async (req, res, next) => {
+router.get('/ssweb', async (url, device = 'desktop') => {
     let url = req.query.url
     if (!url) return res.json({
         status: false,
         creator: 'Davitt',
         message: "masukan parameter url"
     })
-    let anjass = await fetch(`https://ssweb.lonte.eu.org/api/webscreen?url=${url}&mediatype=desktop&responsetype=image`)
-    .then((data) => {
-            res.set({
-                'Content-Type': 'image/png'
-            })
-            res.send(data)
-        })
-        }
+		return new Promise((resolve, reject) => {
+			 const base = 'https://www.screenshotmachine.com'
+			 const param = {
+			   url: url,
+			   device: device,
+			   cacheLimit: 0
+			 }
+			 axios({url: base + '/capture.php',
+				  method: 'POST',
+				  data: new URLSearchParams(Object.entries(param)),
+				  headers: {
+					   'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+				  }
+			 }).then((data) => {
+				  const cookies = data.headers['set-cookie']
+				  if (data.data.status == 'success') {
+					   axios.get(base + '/' + data.data.link, {
+							headers: {
+								 'cookie': cookies.join('')
+							},
+							responseType: 'arraybuffer'
+					   }).then(({ data }) => {
+							resolve(data)
+					   })
+				  } else {
+					   reject()
+				  }
+			 }).catch(reject)
+		})
+   }
 
 router.get('/ytplay', youtubePlay);
 
