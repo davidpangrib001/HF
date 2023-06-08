@@ -22,8 +22,9 @@ router.get('/checkkey', async (req, res) => {
     res.send({status: 200, apikey: apikey, response: 'Aktif :)'});
 });
 
-router.get('/ssweb', async (url, device = 'desktop') => {
-    if (!url) return res.json({
+router.get('/ssweb', async (device = 'desktop') => {
+        let url = req.query.url
+	if (!url) return res.json({
         status: false,
         creator: 'Davitt',
         message: "masukan parameter url"
