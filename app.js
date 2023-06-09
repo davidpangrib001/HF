@@ -64,43 +64,45 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.render('index', {
     layout: 'layouts/main'
   });
 });
+*/
 
 app.get('/docs', isAuthenticated, async (req, res) => { 
   let getkey = await getApikey(req.user.id)
   let { apikey, username } = getkey
   res.render('docs', {
     username: username,
-    apikey: apikey,
-    layout: 'layouts/main'
+    apikey: apikey
+//     layout: 'layouts/main'
   });
 });
 
 app.get('/price', (req, res) => {
   res.render('buyFull', {
-    layout: 'layouts/main'
+//     layout: 'layouts/main'
   })
 })
 
 app.get('/premium', (req, res) => {
   res.render('buyFull', {
-    layout: 'layouts/main'
+//     layout: 'layouts/main'
   })
 })
 
 app.use('/api', apiRouters);
 app.use('/users', userRouters);
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
   if (res.statusCode == '200') {
     res.render('notfound', {
       layout: 'layouts/main'
     });
   }
+*/
 });
 CFonts.say('Onee API', {
   font: 'block',
