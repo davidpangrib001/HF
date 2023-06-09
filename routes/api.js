@@ -50,7 +50,7 @@ router.get('/ssweb', async (req, res, next) => {
     }
 });
 
-router.get('/ssweb', async (req, res, next) => {
+router.get('/sshp', async (req, res, next) => {
     const { url } = req.query;
     if (!url) {
         return res.status(400).json({
