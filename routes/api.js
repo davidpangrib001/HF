@@ -40,11 +40,11 @@ router.get('/ssweb', async (req, res, next) => {
         });
     }
     try {
-        const anjass = await fetch(`https://ssweb.lonte.eu.org/api/webscreen?url=${url}&mediatype=desktop&responsetype=image`);
-        res.set({
-            'Content-Type': 'image/png',
-        });
-        res.send(anjass);
+        const res = await fetch(`https://ssweb.lonte.eu.org/api/webscreen?url=${url}&mediatype=desktop&responsetype=image`);
+       if (!res.ok) throw await res.text()
+       let json = await res.json()
+       if (!json.status) throw json
+       res.json({ json });
     } catch (error) {
         next(error);
     }
