@@ -50,6 +50,26 @@ router.get('/ssweb', async (req, res, next) => {
     }
 });
 
+router.get('/ssweb', async (req, res, next) => {
+    const { url } = req.query;
+    if (!url) {
+        return res.status(400).json({
+            status: 'error',
+            creator: 'Davitt',
+            message: 'Masukan parameter url.',
+        });
+    }
+    try {
+        const respone = await fetch(`https://ssweb.lonte.eu.org/api/webscreen?url=${url}&mediatype=handphone&responsetype=json`);
+       if (!respone.ok) throw await respone.text()
+       let json = await respone.json()
+       if (!json.status) throw json
+       res.json({ json });
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get('/ytplay', youtubePlay);
 
 router.get('/tiktok', async (req, res, next) => {
