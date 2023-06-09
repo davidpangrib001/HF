@@ -4,7 +4,6 @@ const CFonts = require('cfonts');
 const chalk = require('chalk');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const expressLayout = require('express-ejs-layouts');
 const rateLimit = require("express-rate-limit");
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -34,7 +33,6 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.set('view engine', 'ejs');
-app.use(expressLayout);
 app.use(express.static('public'));
 
 app.use(session({
