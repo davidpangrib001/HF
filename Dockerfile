@@ -1,10 +1,10 @@
-FROM ubuntu:lunar
+FROM debian:10
 
 RUN apt update -y
 RUN apt upgrade -y
 RUN apt install -y curl
 
-RUN curl -fsSL http://deb.nodesource.com/setup_lts.x | bash - &&\
+RUN curl -fsSL http://deb.nodesource.com/setup_18.x | bash - &&\
 apt-get install -y nodejs
 RUN npm i yarn -g
 RUN yarn add @bochilteam/scraper
