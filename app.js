@@ -71,12 +71,13 @@ app.get('/docs', isAuthenticated, async (req, res) => {
   });
 });
 
-app.get('/price', (req, res) => {
+/*app.get('/price', (req, res) => {
   res.render('buyFull');
 });
+*/
 
-app.get('/premium', (req, res) => {
-  res.render('buyFull');
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
 app.use('/api', apiRouters);
