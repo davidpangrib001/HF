@@ -12,22 +12,30 @@
 
 <body>
 
-<form class="box" action="https://api.dapitt.site/users/login" method="post">
-
-<h1>Login Here</h1>
-
-<input name="username" type="text" placeholder="Username" required>
-
-<input name="password" type="password" placeholder="Password" required>
-
-<%- recaptcha %>
-
-<input type="submit" name="" value="Login">
-
-</form>
-
-</body>
-
-</html>
-
-
+        <center>
+            <%- include('layouts/msg')  %>
+            </center>
+    </div>
+    <div class="row pricing-content">
+        <center>
+            <form method="POST" action="/users/login">
+                <h2>LOGIN</h2>
+                <div>
+                    <input style="font-family:Arial, FontAwesome" name="username" type="text" class="form-control"" placeholder="&#xf007;   Username" required>
+                </div>
+                <div>
+                    <input style="font-family:Arial, FontAwesome" name="password" type="password" class="form-control" placeholder="&#xf13e;   Password" required>
+                </div>
+                <div>
+                    <%- recaptcha %>
+                </div>
+                <p> </p>
+                <button type="submit" class="button button-primary">Login</button>
+            </form>	
+            <div>
+                <p>Buat Akun</p>
+                <a class="button button-primary" href="/users/register">Register</a>
+            </div>
+        </center>      
+    </div>
+</section>
